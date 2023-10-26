@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 MAJOR = 0
 MINOR = 0
-MICRO = 1
+MICRO = 2
 
 version = f'{MAJOR}.{MINOR}.{MICRO}'
 
@@ -27,7 +27,7 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=["roadrunner", "loopdetect"],
+    install_requires=["libroadrunner>=2.1", "loopdetect>=0.1"],
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     python_requires=">=3.8"

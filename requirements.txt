@@ -1,2 +1,2 @@
 libroadrunner>=2.1
-loopdetect>=0.1.0
+loopdetect>=0.1
