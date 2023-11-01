@@ -11,16 +11,16 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="roadrunnerloopdetect",
+    name="sbmlloopdetect",
     version=version,
     author="Adel Heydarabadipour",
     author_email="adelhp@uw.edu",
     description="Find the loops presented in the Jacobin matrix of Roadrunner using LoopDetect",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/adelhpour/RoadRunnerLoopDetect",
+    url="https://github.com/adelhpour/SBMLLoopDetect",
     project_urls={
-        "Bug Tracker": "https://github.com/adelhpour/RoadRunnerLoopDetect/issues",
+        "Bug Tracker": "https://github.com/adelhpour/SBMLLoopDetect/issues",
     },
     classifiers=[
         "Programming Language :: Python :: 3",
