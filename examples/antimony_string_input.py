@@ -1,3 +1,5 @@
+import loopdetect.core
+
 import sbmlloopdetect
 
 antimony_string = """
@@ -15,5 +17,5 @@ k2 = 0.2 # The value of the kinetic parameter from J1.
 """
 
 
-loop_list = sbmlloopdetect.detect(antimony_string)
+loop_list = sbmlloopdetect.detect(antimony_string, filter_loop_length_list=[2, 3, 4], filter_loop_sign=1, max_num_loops=10)
 print(loop_list)
