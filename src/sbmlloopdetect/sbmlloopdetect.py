@@ -5,7 +5,7 @@ import loopdetect.core
 import pandas
 
 
-def detect(sbml, filter_loop_length_list=[], filter_loop_sign=None):
+def detect(sbml, filter_loop_length_list=[], filter_loop_sign=None, max_num_loops=100000):
     rr = None
     initialize_antimony()
     is_file = check_if_it_is_file(sbml)
@@ -14,7 +14,7 @@ def detect(sbml, filter_loop_length_list=[], filter_loop_sign=None):
     else:
         rr = get_roadrunner_object_from_string(sbml)
 
-    loop_list = loopdetect.core.find_loops_noscc(rr.getFullJacobian())
+    loop_list = loopdetect.core.find_loops_noscc(rr.getFullJacobian(), max_num_loops)
     if len(filter_loop_length_list):
         loop_list = filter_length(loop_list, filter_loop_length_list)
     if filter_loop_sign:
