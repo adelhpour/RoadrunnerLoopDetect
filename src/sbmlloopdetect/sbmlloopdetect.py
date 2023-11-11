@@ -67,6 +67,7 @@ def detect(sbml, filter_loop_length_list=[], filter_positive_loops=False,
         rr = get_roadrunner_object_from_string(sbml)
 
     loop_list = loopdetect.core.find_loops_noscc(rr.getFullJacobian(), max_num_loops)
+    loop_list = calculate_loop_strength(loop_list, rr.getFullJacobian())
     if len(filter_loop_length_list):
         loop_list = filter_length(loop_list, filter_loop_length_list)
     if filter_positive_loops:
@@ -106,11 +107,26 @@ def get_roadrunner_object_from_string(string):
     else:
         return roadrunner.RoadRunner(string)
 
+
+def calculate_loop_strength(loop_list, jacobian):
+    loops = list(loop_list['loop'])
+    strengths = list()
+    for loop in loops:
+        strength = 1
+        for item_index in range(len(loop) - 1):
+            strength *= jacobian[loop[item_index + 1], loop[item_index]]
+        strengths.append(abs(strength))
+    loop_list['strength'] = strengths
+
+    return loop_list
+
 def filter_length(loop_list, loop_length_list):
     return loop_list[~loop_list['length'].isin(loop_length_list)]
 
+
 def filter_sign(loop_list, loop_sign):
     return loop_list[loop_list['sign'] != loop_sign]
+
 
 def replace_node_index_with_name(loop_list, rr):
     species_ids = rr.getModel().getFloatingSpeciesIds()
